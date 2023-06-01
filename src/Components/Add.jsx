@@ -2,8 +2,18 @@ import { useState } from "react";
 import save from "./../assets/icon/save.png";
 
 export default function Add() {
-  const [steps, setSteps] = useState(1);
+  const [stepCounter, setStepCounter] = useState(1);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [steps, setSteps] = useState(Array(stepCounter).fill(""));
   const [imageURL, setImageURL] = useState("");
+
+  const handleStepValues = (index, value) => {
+    const newStepValue = [...steps];
+    newStepValue[index] = value;
+    setSteps(newStepValue);
+  };
 
   return (
     <div className="w-1/2  flex justify-center flex-col">
@@ -15,6 +25,9 @@ export default function Add() {
         <input
           className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
           style={{ backgroundColor: "#706C61" }}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
         />
       </div>
       <div className="my-3 ">
@@ -23,9 +36,12 @@ export default function Add() {
           className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
           style={{ backgroundColor: "#706C61" }}
           rows={4}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
         />
       </div>
-      {Array.from({ length: steps }, (_, index) => {
+      {Array.from({ length: stepCounter }, (_, index) => {
         return (
           <div className="my-3 " key={index}>
             <h1 className="text-xl font-semibold text-white">
@@ -35,17 +51,22 @@ export default function Add() {
               className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
               style={{ backgroundColor: "#706C61" }}
               rows={2}
+              onChange={(text) => {
+                handleStepValues(index, text.target.value);
+              }}
             />
           </div>
         );
       })}
       <div className="flex justify-end m-3">
-        {steps && (
+        {stepCounter && (
           <button
             className="mx-2 py-2 px-10 rounded-lg"
             style={{ backgroundColor: "#706C61" }}
             onClick={() => {
-              setSteps(steps - 1);
+              setStepCounter(stepCounter - 1);
+              const newStepValues = steps.slice(0, -1);
+              setSteps(newStepValues);
             }}
           >
             Subtract Step
@@ -56,7 +77,7 @@ export default function Add() {
           className="mx-2 py-2 px-10 rounded-lg"
           style={{ backgroundColor: "#E1F4F3" }}
           onClick={() => {
-            setSteps(steps + 1);
+            setStepCounter(stepCounter + 1);
           }}
         >
           Add Step
@@ -77,7 +98,15 @@ export default function Add() {
         <img src={imageURL} className="w-full h-full" />
       </div>
       <div className="my-3">
-        <button className="w-full flex justify-center bg-white py-2 rounded-lg items-center">
+        <button
+          className="w-full flex justify-center bg-white py-2 rounded-lg items-center"
+          onClick={() => {
+            console.log("Title: " + title);
+            console.log("Description: " + description);
+            console.log("Steps: " + steps);
+            console.log("Image URL: " + imageURL);
+          }}
+        >
           <h1 className="text-2xl font-bold">Save Note</h1>
           <img src={save} className="w-10 h-10 m-2" />
         </button>
