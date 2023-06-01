@@ -70,7 +70,6 @@ export default function Add() {
           placeholder="Link of the image"
           onChange={(text) => {
             setImageURL(text.target.value);
-            console.log(imageURL);
           }}
         />
       </div>
