@@ -8,12 +8,10 @@ export default function Card() {
         <img src={thumbnail} className="rounded-t-xl" />
       </div>
       <div
-        className=" h-1/4 rounded-b-xl flex items-center px-2 "
-        style={{ backgroundColor: "#706C61" }}
+        className="bg-blue-500 h-1/4 rounded-b-xl flex items-center px-2 "
+        style={{ backgroundColor: "#9DB2BF" }}
       >
-        <h1 className="text-base truncate" style={{ color: "#FFFFFF" }}>
-          Setting Up React+Vite+Tailwind
-        </h1>
+        <h1 className="text-base truncate">Setting Up React+Vite+Tailwind</h1>
       </div>
     </div>
   );
