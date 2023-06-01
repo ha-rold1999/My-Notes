@@ -1,4 +1,5 @@
 import Card from "./Components/Card";
+import Header from "./Components/Header";
 
 function App() {
   let myarr = [
@@ -37,13 +38,8 @@ function App() {
   ];
 
   return (
-    <div className="w-full" style={{ backgroundColor: "#526D82" }}>
-      <div
-        className="w-full p-5  rounded-b-lg"
-        style={{ backgroundColor: "#9DB2BF" }}
-      >
-        <h1 className="font-bold text-3xl">My Notes</h1>
-      </div>
+    <div className="w-full">
+      <Header />
       <div className="flex flex-wrap justify-center w-full ">
         <div className="grid grid-cols-4">
           {myarr.map((arr, index) => {
