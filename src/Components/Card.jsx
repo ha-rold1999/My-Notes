@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Card({ arr }) {
   return (
-    <div className=" bg-white h-60 w-80 m-2 rounded-xl">
+    <Link to="/note" state={arr} className=" bg-white h-60 w-80 m-2 rounded-xl">
       <div className=" h-3/4 rounded-t-xl flex justify-center">
         <img src={arr.url} className="rounded-t-xl h-full " />
       </div>
@@ -14,7 +15,7 @@ export default function Card({ arr }) {
           {arr.title}
         </h1>
       </div>
-    </div>
+    </Link>
   );
 }
 

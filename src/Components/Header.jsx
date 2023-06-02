@@ -17,16 +17,10 @@ export default function Header() {
 
       <div className="basis-1/2  rounded-lg">
         <input
-          className="h-full w-3/4 rounded-lg px-2 text-white focus:outline-none focus:border-transparent"
+          className="h-full w-full rounded-lg px-2 text-white focus:outline-none focus:border-transparent"
           style={{ backgroundColor: "#333333" }}
+          placeholder="Search a note"
         />
-
-        <button
-          className="w-1/4 h-full rounded-lg "
-          style={{ backgroundColor: "#E1F4F3" }}
-        >
-          <h1>Search</h1>
-        </button>
       </div>
       <div className="basis-1/4  flex justify-center items-center flex-row ">
         <Link to="/add"> Add new note</Link>

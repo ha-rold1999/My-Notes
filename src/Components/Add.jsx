@@ -1,5 +1,6 @@
 import { useState } from "react";
 import save from "./../assets/icon/save.png";
+import { Link } from "react-router-dom";
 
 export default function Add() {
   const [stepCounter, setStepCounter] = useState(1);
@@ -98,7 +99,8 @@ export default function Add() {
         <img src={imageURL} className="w-full h-full" />
       </div>
       <div className="my-3">
-        <button
+        <Link
+          to="/"
           className="w-full flex justify-center bg-white py-2 rounded-lg items-center"
           onClick={() => {
             fetch("http://localhost:5019/api/Notes/AddNote", {
@@ -120,7 +122,7 @@ export default function Add() {
         >
           <h1 className="text-2xl font-bold">Save Note</h1>
           <img src={save} className="w-10 h-10 m-2" />
-        </button>
+        </Link>
       </div>
     </div>
   );

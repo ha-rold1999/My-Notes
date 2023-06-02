@@ -1,6 +1,7 @@
 import Notes from "./Components/Notes";
 import Add from "./Components/Add";
 import Header from "./Components/Header";
+import Note from "./Components/Note";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Notes />} />
             <Route path="/add" element={<Add />} />
+            <Route path="/note" element={<Note />} />
           </Routes>
         </div>
       </div>
