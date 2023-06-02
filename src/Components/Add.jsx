@@ -101,10 +101,21 @@ export default function Add() {
         <button
           className="w-full flex justify-center bg-white py-2 rounded-lg items-center"
           onClick={() => {
-            console.log("Title: " + title);
-            console.log("Description: " + description);
-            console.log("Steps: " + steps);
-            console.log("Image URL: " + imageURL);
+            fetch("http://localhost:5019/api/Notes/AddNote", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                Title: title,
+                Description: description,
+                steps: steps,
+                url: imageURL,
+              }),
+            })
+              .then((res) => res.json())
+              .then((res) => {
+                console.log(JSON.stringify(res, null, 2));
+              })
+              .catch((res) => console.log(JSON.stringify(res, null, 2)));
           }}
         >
           <h1 className="text-2xl font-bold">Save Note</h1>
