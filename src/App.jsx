@@ -1,57 +1,23 @@
-import Card from "./Components/Card";
+import Notes from "./Components/Notes";
+import Add from "./Components/Add";
+import Header from "./Components/Header";
+import Note from "./Components/Note";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 
 function App() {
-  let myarr = [
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-    "Hello",
-  ];
-
   return (
-    <div className="w-full" style={{ backgroundColor: "#526D82" }}>
-      <div
-        className="w-full p-5  rounded-b-lg"
-        style={{ backgroundColor: "#9DB2BF" }}
-      >
-        <h1 className="font-bold text-3xl">My Notes</h1>
-      </div>
+    <div className="w-full">
+      <Header />
       <div className="flex flex-wrap justify-center w-full ">
         <div className="grid grid-cols-4">
           {myarr.map((arr, index) => {
             return <Card key={index} arr={arr} />;
           })}
         </div>
-      </div>
-    </div>
+      </Router>
+    </Provider>
   );
 }
 
