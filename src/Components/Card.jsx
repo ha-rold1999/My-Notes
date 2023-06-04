@@ -9,7 +9,7 @@ export default function Card({ arr }) {
       </div>
       <div
         className="bg-blue-500 h-1/4 rounded-b-xl flex items-center px-2 "
-        style={{ backgroundColor: "#9DB2BF" }}
+        style={{ backgroundColor: "#706C61" }}
       >
         <h1 className="text-base truncate" style={{ color: "#FFFFFF" }}>
           {arr.title}

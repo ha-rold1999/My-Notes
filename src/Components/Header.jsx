@@ -1,4 +1,4 @@
-import note from "./../assets/icon/notes.png";
+import note from "./../assets/icon/note.png";
 import addnote from "./../assets/icon/add.png";
 import { Link } from "react-router-dom";
 import { setSearch } from "../Redux/searchSlice";
