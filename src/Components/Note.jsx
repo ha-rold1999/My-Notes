@@ -1,7 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { newDataTrigger } from "../Redux/updateSlice";
+import { useDispatch } from "react-redux";
 
 export default function Note() {
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const data = location.state;
 
@@ -50,7 +54,10 @@ export default function Note() {
         <Link
           to="/"
           className="text-red-500  border-2 border-red-500 px-5 hover:text-white hover:bg-red-500"
-          onClick={() => deleteNote(data.id)}
+          onClick={() => {
+            deleteNote(data.id);
+            dispatch(newDataTrigger(true));
+          }}
         >
           Delete
         </Link>

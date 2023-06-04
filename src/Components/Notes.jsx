@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { useSelector } from "react-redux";
+import { newDataTrigger } from "../Redux/updateSlice";
+import { useDispatch } from "react-redux";
 
 export default function Notes() {
+  const dispatch = useDispatch();
   const [note, setNotes] = useState([]);
   const { search } = useSelector((state) => state.searchSlice);
+  const { newData } = useSelector((state) => state.updateSlice);
 
   useEffect(() => {
     fetch("http://localhost:5019/api/Notes/GetAllNotes", {
@@ -16,8 +20,9 @@ export default function Notes() {
       .then((res) => res.json())
       .then((res) => {
         setNotes(res);
+        dispatch(newDataTrigger(false));
       });
-  }, [note]);
+  }, [newData, dispatch]);
 
   const filteredData =
     note?.data?.filter((arr) => {

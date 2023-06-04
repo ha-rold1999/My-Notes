@@ -1,8 +1,12 @@
 import { useState } from "react";
 import save from "./../assets/icon/save.png";
 import { Link } from "react-router-dom";
+import { newDataTrigger } from "../Redux/updateSlice";
+import { useDispatch } from "react-redux";
 
 export default function Add() {
+  const dispatch = useDispatch();
+
   const [stepCounter, setStepCounter] = useState(1);
 
   const [title, setTitle] = useState("");
@@ -116,6 +120,7 @@ export default function Add() {
               .then((res) => res.json())
               .then((res) => {
                 console.log(JSON.stringify(res, null, 2));
+                dispatch(newDataTrigger(true));
               })
               .catch((res) => console.log(JSON.stringify(res, null, 2)));
           }}
