@@ -1,18 +1,27 @@
 import { useState } from "react";
-import save from "./../assets/icon/save.png";
-import { Link } from "react-router-dom";
-import { newDataTrigger } from "../Redux/updateSlice";
-import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import Title from "./Title";
+import Description from "./Description";
+import Step from "./Step";
+import StepCounter from "./StepCounter";
+import Thumbnail from "./Thumbnail";
+import Submit from "./Submit";
 
 export default function Add() {
-  const dispatch = useDispatch();
+  const location = useLocation();
+  const data = location.state;
 
-  const [stepCounter, setStepCounter] = useState(1);
+  console.log(JSON.stringify(data, null, 2));
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [steps, setSteps] = useState(Array(stepCounter).fill(""));
-  const [imageURL, setImageURL] = useState("");
+  const [stepCounter, setStepCounter] = useState(data ? data.steps.length : 1);
+
+  const [id] = useState(data && data.id);
+  const [title, setTitle] = useState(data ? data.title : "");
+  const [description, setDescription] = useState(data ? data.description : "");
+  const [steps, setSteps] = useState(
+    data ? data.steps : Array(stepCounter).fill("")
+  );
+  const [imageURL, setImageURL] = useState(data ? data.url : "");
 
   const handleStepValues = (index, value) => {
     const newStepValue = [...steps];
@@ -23,112 +32,36 @@ export default function Add() {
   return (
     <div className="w-1/2  flex justify-center flex-col">
       <div className="flex justify-center">
-        <h1 className="text-3xl font-bold text-white">Add New Note</h1>
+        <h1 className="text-3xl font-bold text-white">
+          {data ? "Update Note" : "Add New Note"}
+        </h1>
       </div>
-      <div className="my-3 ">
-        <h1 className="text-xl font-semibold text-white">Title</h1>
-        <input
-          className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
-          style={{ backgroundColor: "#706C61" }}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-      </div>
-      <div className="my-3 ">
-        <h1 className="text-xl font-semibold text-white">Description</h1>
-        <textarea
-          className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
-          style={{ backgroundColor: "#706C61" }}
-          rows={4}
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-        />
-      </div>
+      <Title setTitle={setTitle} title={title} />
+      <Description setDescription={setDescription} description={description} />
       {Array.from({ length: stepCounter }, (_, index) => {
         return (
-          <div className="my-3 " key={index}>
-            <h1 className="text-xl font-semibold text-white">
-              Step {index + 1}
-            </h1>
-            <textarea
-              className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
-              style={{ backgroundColor: "#706C61" }}
-              rows={2}
-              onChange={(text) => {
-                handleStepValues(index, text.target.value);
-              }}
-            />
-          </div>
+          <Step
+            key={index}
+            handleStepValues={handleStepValues}
+            index={index}
+            steps={steps[index]}
+          />
         );
       })}
-      <div className="flex justify-end m-3">
-        {stepCounter && (
-          <button
-            className="mx-2 py-2 px-10 rounded-lg"
-            style={{ backgroundColor: "#706C61" }}
-            onClick={() => {
-              setStepCounter(stepCounter - 1);
-              const newStepValues = steps.slice(0, -1);
-              setSteps(newStepValues);
-            }}
-          >
-            Subtract Step
-          </button>
-        )}
-
-        <button
-          className="mx-2 py-2 px-10 rounded-lg"
-          style={{ backgroundColor: "#E1F4F3" }}
-          onClick={() => {
-            setStepCounter(stepCounter + 1);
-          }}
-        >
-          Add Step
-        </button>
-      </div>
-      <div className="my-3 ">
-        <h1 className="text-xl font-semibold text-white">Thumbnail</h1>
-        <input
-          className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
-          style={{ backgroundColor: "#706C61" }}
-          placeholder="Link of the image"
-          onChange={(text) => {
-            setImageURL(text.target.value);
-          }}
-        />
-      </div>
-      <div className="w-full h-full bg-white my-3">
-        <img src={imageURL} className="w-full h-full" />
-      </div>
-      <div className="my-3">
-        <Link
-          to="/"
-          className="w-full flex justify-center bg-white py-2 rounded-lg items-center"
-          onClick={() => {
-            fetch("http://localhost:5019/api/Notes/AddNote", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                Title: title,
-                Description: description,
-                steps: steps,
-                url: imageURL,
-              }),
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                console.log(JSON.stringify(res, null, 2));
-                dispatch(newDataTrigger(true));
-              })
-              .catch((res) => console.log(JSON.stringify(res, null, 2)));
-          }}
-        >
-          <h1 className="text-2xl font-bold">Save Note</h1>
-          <img src={save} className="w-10 h-10 m-2" />
-        </Link>
-      </div>
+      <StepCounter
+        stepCounter={stepCounter}
+        setSteps={setSteps}
+        setStepCounter={setStepCounter}
+        steps={steps}
+      />
+      <Thumbnail setImageURL={setImageURL} imageURL={imageURL} />
+      <Submit
+        id={id}
+        title={title}
+        description={description}
+        steps={steps}
+        imageURL={imageURL}
+      />
     </div>
   );
 }

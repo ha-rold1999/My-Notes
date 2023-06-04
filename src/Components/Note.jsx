@@ -50,16 +50,24 @@ export default function Note() {
           </div>
         );
       })}
-      <div className="flex justify-end my-3">
+      <div className="flex justify-end my-3 flex-row">
         <Link
           to="/"
-          className="text-red-500  border-2 border-red-500 px-5 hover:text-white hover:bg-red-500"
+          className="text-red-500  border-2 border-red-500 px-5 hover:text-white hover:bg-red-500 mr-5"
           onClick={() => {
             deleteNote(data.id);
             dispatch(newDataTrigger(true));
           }}
         >
           Delete
+        </Link>
+        <Link
+          to="/add"
+          state={data}
+          className="text-white px-5"
+          style={{ backgroundColor: "#706C61" }}
+        >
+          Update
         </Link>
       </div>
     </div>
