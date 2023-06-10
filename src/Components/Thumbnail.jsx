@@ -1,5 +1,11 @@
-// eslint-disable-next-line react/prop-types
-export default function Thumbnail({ setImageURL, imageURL }) {
+import PropTypes from "prop-types";
+
+export default function Thumbnail({ register, errors, watch }) {
+  Thumbnail.propTypes = {
+    register: PropTypes.func.isRequired,
+    errors: PropTypes.func.isRequired,
+    watch: PropTypes.func.isRequired,
+  };
   return (
     <>
       <div className="my-3 ">
@@ -8,14 +14,12 @@ export default function Thumbnail({ setImageURL, imageURL }) {
           className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
           style={{ backgroundColor: "#706C61" }}
           placeholder="Link of the image"
-          onChange={(text) => {
-            setImageURL(text.target.value);
-          }}
-          value={imageURL}
+          {...register("thumbnail")}
         />
+        <span className="text-red-600">{errors.thumbnail?.message}</span>
       </div>
-      <div className="w-full h-full bg-white my-3">
-        <img src={imageURL} className="w-full h-full" />
+      <div className="w-full h-fit bg-white my-3">
+        <img src={watch("thumbnail")} className="w-full h-fit" />
       </div>
     </>
   );
