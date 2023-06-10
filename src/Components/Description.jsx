@@ -1,5 +1,13 @@
+import PropTypes from "prop-types";
+
 // eslint-disable-next-line react/prop-types
-export default function Description({ setDescription, description }) {
+export default function Description({ register, errors }) {
+  Description.propTypes = {
+    register: PropTypes.func.isRequired,
+    errors: PropTypes.shape({
+      description: PropTypes.shape({ message: PropTypes.string }),
+    }),
+  };
   return (
     <div className="my-3 ">
       <h1 className="text-xl font-semibold text-white">Description</h1>
@@ -7,11 +15,9 @@ export default function Description({ setDescription, description }) {
         className="w-full p-2 text-white focus:outline-none focus:border-transparent rounded-lg"
         style={{ backgroundColor: "#706C61" }}
         rows={4}
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-        value={description}
+        {...register("description")}
       />
+      <span className="text-red-600">{errors.description?.message}</span>
     </div>
   );
 }

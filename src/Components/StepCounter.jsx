@@ -1,31 +1,29 @@
-/* eslint-disable react/prop-types */
-export default function StepCounter({
-  stepCounter,
-  setStepCounter,
-  setSteps,
-  steps,
-}) {
+import PropTypes from "prop-types";
+
+export default function StepCounter({ remove, fields, append }) {
+  StepCounter.propTypes = {
+    remove: PropTypes.func.isRequired,
+    fields: PropTypes.array,
+    append: PropTypes.func.isRequired,
+  };
   return (
     <div className="flex justify-end m-3">
-      {stepCounter && (
-        <button
-          className="mx-2 py-2 px-10 rounded-lg"
-          style={{ backgroundColor: "#706C61" }}
-          onClick={() => {
-            setStepCounter(stepCounter - 1);
-            const newStepValues = steps.slice(0, -1);
-            setSteps(newStepValues);
-          }}
-        >
-          Subtract Step
-        </button>
-      )}
-
+      <button
+        type="button"
+        className="mx-2 py-2 px-10 rounded-lg"
+        style={{ backgroundColor: "#706C61" }}
+        onClick={() => {
+          remove(fields.length - 1);
+        }}
+      >
+        Remove Step
+      </button>
       <button
         className="mx-2 py-2 px-10 rounded-lg"
         style={{ backgroundColor: "#E1F4F3" }}
+        type="button"
         onClick={() => {
-          setStepCounter(stepCounter + 1);
+          append("");
         }}
       >
         Add Step
