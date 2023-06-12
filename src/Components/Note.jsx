@@ -2,22 +2,37 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { newDataTrigger } from "../Redux/updateSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { Delete } from "./call";
 
 export default function Note() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const location = useLocation();
   const data = location.state;
 
   const deleteNote = (id) => {
-    fetch(`http://localhost:5019/api/Notes/DeleteNote/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .catch((res) => console.log(JSON.stringify(res, null, 2)));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const result = Delete(id);
+        if (result === 200) {
+          navigate("/");
+          Swal.fire("Deleted!", "Your note has been deleted.", "success");
+        } else {
+          Swal.fire("Delete Failed", "Something went wrong", "error");
+        }
+      }
+    });
   };
 
   return (
@@ -51,16 +66,16 @@ export default function Note() {
         );
       })}
       <div className="flex justify-end my-3 flex-row">
-        <Link
-          to="/"
-          className="text-red-500  border-2 border-red-500 px-5 hover:text-white hover:bg-red-500 mr-5"
+        <div
+          className="text-red-500  border-2 border-red-500 px-5 hover:text-white 
+          hover:bg-red-500 mr-5 cursor-pointer"
           onClick={() => {
             deleteNote(data.id);
             dispatch(newDataTrigger(true));
           }}
         >
           Delete
-        </Link>
+        </div>
         <Link
           to="/add"
           state={data}

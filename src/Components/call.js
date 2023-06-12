@@ -45,3 +45,17 @@ export function Post(input) {
 
   return result;
 }
+
+export function Delete(id) {
+  let result = 200;
+  fetch(`http://localhost:5019/api/Notes/DeleteNote/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).catch((res) => {
+    console.log(JSON.stringify(res, null, 2));
+    result = 400;
+  });
+  return result;
+}
