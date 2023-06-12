@@ -11,6 +11,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { newDataTrigger } from "../Redux/updateSlice";
+import Swal from "sweetalert2";
 
 import { Put, Post } from "./call";
 
@@ -34,7 +35,7 @@ export default function Add() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      step: data ? data.steps : [""],
+      step: data ? data.steps : [],
       title: data ? data.title : "",
       description: data ? data.description : "",
       thumbnail: data ? data.url : "",
@@ -43,17 +44,24 @@ export default function Add() {
   const { fields, append, remove } = useFieldArray({ name: "step", control });
 
   const onSubmit = (input) => {
+    Swal.fire({ title: "Sending data", showConfirmButton: false });
     if (data) {
       const res = Put(data, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
         navigate("/");
+        Swal.fire("Note update success", "", "success");
+      } else {
+        Swal.fire("Updating note failed", "", "error");
       }
     } else {
       const res = Post(input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
         navigate("/");
+        Swal.fire("New note added", "", "success");
+      } else {
+        Swal.fire("Adding new note failed", "", "error");
       }
     }
   };
