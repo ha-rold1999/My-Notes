@@ -31,7 +31,7 @@ export default function Notes() {
     }) || [];
 
   return (
-    <div className="grid grid-cols-4 2xl:grid-cols-6">
+    <div className="grid grid-cols-4 2xl:grid-cols-5">
       {filteredData.map((arr, index) => {
         return <Card key={index} arr={arr} />;
       })}

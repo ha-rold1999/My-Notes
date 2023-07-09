@@ -26,7 +26,7 @@ export default function Note() {
       if (result.isConfirmed) {
         const result = Delete(id);
         if (result === 200) {
-          navigate("/");
+          navigate("/my-notes");
           Swal.fire("Deleted!", "Your note has been deleted.", "success");
         } else {
           Swal.fire("Delete Failed", "Something went wrong", "error");
