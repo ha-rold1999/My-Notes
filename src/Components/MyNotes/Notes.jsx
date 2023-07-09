@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import { useSelector } from "react-redux";
-import { newDataTrigger } from "../Redux/updateSlice";
+import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
-import { API_URL } from "../../environment";
+import {API_URL} from "../../../environment"
 
 export default function Notes() {
   const dispatch = useDispatch();

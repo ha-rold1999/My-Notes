@@ -10,7 +10,7 @@ import Submit from "./Submit";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { newDataTrigger } from "../Redux/updateSlice";
+import { newDataTrigger } from "../../Redux/updateSlice";
 import Swal from "sweetalert2";
 
 import { Put, Post } from "./call";

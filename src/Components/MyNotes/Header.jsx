@@ -1,7 +1,8 @@
-import note from "./../assets/icon/note.png";
-import addnote from "./../assets/icon/add.png";
+import note from "./../../assets/icon/note.png";
+import addnote from "./../../assets/icon/add.png";
+import coding from "./../../assets/icon/coding.png"
 import { Link } from "react-router-dom";
-import { setSearch } from "../Redux/searchSlice";
+import { setSearch } from "../../Redux/searchSlice";
 import { useDispatch } from "react-redux";
 
 export default function Header() {
@@ -31,12 +32,21 @@ export default function Header() {
           }}
         />
       </div>
-      <Link to="/add" className=" basis-1/4 flex justify-center items-center">
-        <div className="  flex justify-center items-center flex-row ">
-          <div className="text-white">Add new note</div>
-          <img src={addnote} className="w-10 h-10 p-1" />
-        </div>
-      </Link>
+      <div className=" basis-1/4 flex justify-center items-center space-x-5">
+        <Link to="/CodesAndSuch" >
+          <div className="  flex justify-center items-center flex-row ">
+            <div className="text-white">Codes and Such</div>
+            <img src={coding} className="w-10 h-10 p-1" />
+          </div>
+        </Link>
+        <Link to="/add" >
+          <div className="  flex justify-center items-center flex-row ">
+            <div className="text-white">Add new note</div>
+            <img src={addnote} className="w-10 h-10 p-1" />
+          </div>
+        </Link>
+      </div>
+      
     </div>
   );
 }
