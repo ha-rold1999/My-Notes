@@ -21,7 +21,6 @@ export default function Codes() {
         .then((res) => res.json())
         .then((res) => {
           setNotes(res);
-          console.log(JSON.stringify(code, null, 2))
           dispatch(newDataTrigger(false));
         });
     }, [newData, dispatch]);

@@ -2,6 +2,7 @@ import Header from "./Header"
 import Codes from "./Codes"
 import Code from "./Code"
 import { Routes, Route } from "react-router-dom"
+import Add from "./Add"
 
 export default function CodesAndSuch() {
   
@@ -16,6 +17,7 @@ export default function CodesAndSuch() {
           {/* <Route path="/add" element={<Add />} />
           <Route path="/note" element={<Note />} /> */}
           <Route path="/code" element={<Code/>}/>
+          <Route path="/add" element={<Add/>}/>
         </Routes>
       </div>
     </div>

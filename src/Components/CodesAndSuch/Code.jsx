@@ -44,7 +44,7 @@ export default function Code() {
         <img src={data.url} className="w-fit h-full rounded-lg" />
       </div>
       <div className="text-white text-4xl font-bold whitespace-normal">
-        {data.title}
+        {data.name}
       </div>
       <div
         className="text-white text-2xl whitespace-normal my-3"
@@ -76,7 +76,7 @@ export default function Code() {
           Delete
         </div>
         <Link
-          to="/my-notes/add"
+          to="/codes-and-such/add"
           state={data}
           className="text-white px-5"
           style={{ backgroundColor: "#706C61" }}

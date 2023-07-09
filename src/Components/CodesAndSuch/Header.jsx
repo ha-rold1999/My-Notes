@@ -42,7 +42,7 @@ export default function Header() {
           <img src={notebook} className="w-10 h-10 p-1" />
         </div>
       </Link>
-      <Link to="/my-notes/add" >
+      <Link to="/codes-and-such/add" >
         <div className="  flex justify-center items-center flex-row ">
           <div className="text-white">Add new code</div>
           <img src={newCode} className="w-10 h-10 p-1" />
