@@ -14,7 +14,7 @@ export default function Menu() {
             </div>
             <img src={notes} className="w-12 h-12"/>
         </Link>
-        <Link to="/CodesAndSuch" className="bg-yellow-500 py-5 w-1/2 px-5 justify-center 
+        <Link to="/codes-and-such" className="bg-yellow-500 py-5 w-1/2 px-5 justify-center 
         flex rounded-lg space-x-5">
             <div className="text-white text-5xl font-bold ">
                 Codes And Such

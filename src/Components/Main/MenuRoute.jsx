@@ -10,7 +10,7 @@ export default function MenuRoute() {
       <Routes>
           <Route path='/' element={<Menu/>}/>
           <Route path='/my-notes/*' element={<MyNotes/>}/>
-          <Route path='/CodesAndSuch' element={<CodesAndSuch/>}/>
+          <Route path='/codes-and-such/*' element={<CodesAndSuch/>}/>
       </Routes>
     </Router>
     
