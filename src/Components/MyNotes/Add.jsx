@@ -10,7 +10,7 @@ import Submit from "./Submit";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { newDataTrigger } from "../Redux/updateSlice";
+import { newDataTrigger } from "../../Redux/updateSlice";
 import Swal from "sweetalert2";
 
 import { Put, Post } from "./call";
@@ -49,7 +49,7 @@ export default function Add() {
       const res = Put(data, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
-        navigate("/");
+        navigate("/my-notes");
         Swal.fire("Note update success", "", "success");
       } else {
         Swal.fire("Updating note failed", "", "error");
@@ -58,7 +58,7 @@ export default function Add() {
       const res = Post(input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
-        navigate("/");
+        navigate("/my-notes");
         Swal.fire("New note added", "", "success");
       } else {
         Swal.fire("Adding new note failed", "", "error");

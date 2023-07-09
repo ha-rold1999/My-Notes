@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import { useSelector } from "react-redux";
-import { newDataTrigger } from "../Redux/updateSlice";
+import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
-import { API_URL } from "../../environment";
+import {API_URL} from "../../../environment"
 
 export default function Notes() {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function Notes() {
     }) || [];
 
   return (
-    <div className="grid grid-cols-4 2xl:grid-cols-6">
+    <div className="grid grid-cols-4 2xl:grid-cols-5">
       {filteredData.map((arr, index) => {
         return <Card key={index} arr={arr} />;
       })}

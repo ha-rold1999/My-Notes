@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { newDataTrigger } from "../Redux/updateSlice";
+import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -26,7 +26,7 @@ export default function Note() {
       if (result.isConfirmed) {
         const result = Delete(id);
         if (result === 200) {
-          navigate("/");
+          navigate("/my-notes");
           Swal.fire("Deleted!", "Your note has been deleted.", "success");
         } else {
           Swal.fire("Delete Failed", "Something went wrong", "error");
@@ -77,7 +77,7 @@ export default function Note() {
           Delete
         </div>
         <Link
-          to="/add"
+          to="/my-notes/add"
           state={data}
           className="text-white px-5"
           style={{ backgroundColor: "#706C61" }}
