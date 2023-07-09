@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Code from "./Code";
+import Card from "./Card";
 import { useSelector } from "react-redux";
 import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
@@ -34,7 +34,7 @@ export default function Codes() {
     return (
       <div className="grid grid-cols-4 2xl:grid-cols-5">
         {filteredData.map((arr, index) => {
-          return <Code key={index} arr={arr} />;
+          return <Card key={index} arr={arr} />;
         })}
       </div>
     );

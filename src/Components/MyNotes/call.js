@@ -59,3 +59,17 @@ export function Delete(id) {
   });
   return result;
 }
+
+export function DeleteCode(id) {
+  let result = 200;
+  fetch(`http://localhost:5019/api/Codes/DeleteCode/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).catch((res) => {
+    console.log(JSON.stringify(res, null, 2));
+    result = 400;
+  });
+  return result;
+}
