@@ -77,7 +77,7 @@ export default function Note() {
           Delete
         </div>
         <Link
-          to="/add"
+          to="/my-notes/add"
           state={data}
           className="text-white px-5"
           style={{ backgroundColor: "#706C61" }}
