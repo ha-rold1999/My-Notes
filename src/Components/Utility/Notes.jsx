@@ -3,16 +3,16 @@ import Card from "./Card";
 import { useSelector } from "react-redux";
 import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
-import {API_URL} from "../../../environment"
+import { API_URL } from "../../../environment";
 
-export default function Notes() {
+export default function Notes({ notesURL, noteURL }) {
   const dispatch = useDispatch();
   const [note, setNotes] = useState([]);
   const { search } = useSelector((state) => state.searchSlice);
   const { newData } = useSelector((state) => state.updateSlice);
 
   useEffect(() => {
-    fetch(`${API_URL}/api/Notes/GetAllNotes`, {
+    fetch(`${API_URL}/api/${notesURL}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -21,6 +21,7 @@ export default function Notes() {
       .then((res) => res.json())
       .then((res) => {
         setNotes(res);
+        console.log(JSON.stringify(res, null, 2));
         dispatch(newDataTrigger(false));
       });
   }, [newData, dispatch]);
@@ -33,7 +34,7 @@ export default function Notes() {
   return (
     <div className="grid grid-cols-4 2xl:grid-cols-5">
       {filteredData.map((arr, index) => {
-        return <Card key={index} arr={arr} />;
+        return <Card key={index} arr={arr} noteURL={noteURL} />;
       })}
     </div>
   );
