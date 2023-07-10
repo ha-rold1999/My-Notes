@@ -5,6 +5,7 @@ import Add from "./Add";
 import Navbar from "../Utility/Navbar";
 import coding from "./../../assets/icon/coding.png";
 import newCode from "./../../assets/icon/branch.png";
+import Notes from "../Utility/Notes";
 
 export default function CodesAndSuch() {
   const header = {
@@ -16,6 +17,8 @@ export default function CodesAndSuch() {
     addLogo: newCode,
   };
 
+  const notesURL = "Codes/GetAllCodes";
+
   return (
     <div className="w-full">
       <div className="sticky top-0">
@@ -23,7 +26,7 @@ export default function CodesAndSuch() {
       </div>
       <div className="flex flex-wrap justify-center w-full ">
         <Routes>
-          <Route path="/" element={<Codes />} />
+          <Route path="/" element={<Notes notesURL={notesURL} />} />
           {/* <Route path="/add" element={<Add />} />
           <Route path="/note" element={<Note />} /> */}
           <Route path="/code" element={<Code />} />

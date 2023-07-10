@@ -1,5 +1,5 @@
 import React from "react";
-import Notes from "./Notes";
+import Notes from "../Utility/Notes";
 import Add from "./Add";
 import Note from "./Note";
 import Navbar from "../Utility/Navbar";
@@ -17,6 +17,8 @@ export default function MyNotes() {
     addName: "Add new Note",
     addLogo: addIcon,
   };
+  const notesURL = "Notes/GetAllNotes";
+
   return (
     <div className="w-full">
       <div className="sticky top-0">
@@ -24,7 +26,7 @@ export default function MyNotes() {
       </div>
       <div className="flex flex-wrap justify-center w-full ">
         <Routes>
-          <Route path="/" element={<Notes />} />
+          <Route path="/" element={<Notes notesURL={notesURL} />} />
           <Route path="/add" element={<Add />} />
           <Route path="/note" element={<Note />} />
         </Routes>

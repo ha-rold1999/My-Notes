@@ -3,8 +3,6 @@ import notebook from "./../../assets/icon/notebook.png";
 import { Link } from "react-router-dom";
 import { setSearch } from "../../Redux/searchSlice";
 import { useDispatch } from "react-redux";
-import coding from "./../../assets/icon/coding.png";
-import newCode from "./../../assets/icon/branch.png";
 
 export default function Navbar({ header }) {
   const dispatch = useDispatch();
