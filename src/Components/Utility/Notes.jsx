@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Card from "../CodesAndSuch/Card";
+import Card from "./Card";
 import { useSelector } from "react-redux";
 import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
 import { API_URL } from "../../../environment";
 
-export default function Notes({ notesURL }) {
+export default function Notes({ notesURL, noteURL }) {
   const dispatch = useDispatch();
   const [note, setNotes] = useState([]);
   const { search } = useSelector((state) => state.searchSlice);
@@ -34,7 +34,7 @@ export default function Notes({ notesURL }) {
   return (
     <div className="grid grid-cols-4 2xl:grid-cols-5">
       {filteredData.map((arr, index) => {
-        return <Card key={index} arr={arr} />;
+        return <Card key={index} arr={arr} noteURL={noteURL} />;
       })}
     </div>
   );

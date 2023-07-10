@@ -18,6 +18,7 @@ export default function MyNotes() {
     addLogo: addIcon,
   };
   const notesURL = "Notes/GetAllNotes";
+  const noteURL = "/my-notes/note";
 
   return (
     <div className="w-full">
@@ -26,7 +27,10 @@ export default function MyNotes() {
       </div>
       <div className="flex flex-wrap justify-center w-full ">
         <Routes>
-          <Route path="/" element={<Notes notesURL={notesURL} />} />
+          <Route
+            path="/"
+            element={<Notes notesURL={notesURL} noteURL={noteURL} />}
+          />
           <Route path="/add" element={<Add />} />
           <Route path="/note" element={<Note />} />
         </Routes>

@@ -1,4 +1,3 @@
-import Codes from "./Codes";
 import Code from "./Code";
 import { Routes, Route } from "react-router-dom";
 import Add from "./Add";
@@ -18,6 +17,7 @@ export default function CodesAndSuch() {
   };
 
   const notesURL = "Codes/GetAllCodes";
+  const noteURL = "/codes-and-such/code";
 
   return (
     <div className="w-full">
@@ -26,7 +26,10 @@ export default function CodesAndSuch() {
       </div>
       <div className="flex flex-wrap justify-center w-full ">
         <Routes>
-          <Route path="/" element={<Notes notesURL={notesURL} />} />
+          <Route
+            path="/"
+            element={<Notes notesURL={notesURL} noteURL={noteURL} />}
+          />
           {/* <Route path="/add" element={<Add />} />
           <Route path="/note" element={<Note />} /> */}
           <Route path="/code" element={<Code />} />
