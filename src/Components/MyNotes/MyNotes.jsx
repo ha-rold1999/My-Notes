@@ -1,10 +1,10 @@
 import React from "react";
 import Notes from "../Utility/Notes";
 import Add from "./Add";
-import Note from "./Note";
 import Navbar from "../Utility/Navbar";
 import logo from "./../../assets/icon/note.png";
 import addIcon from "./../../assets/icon/add.png";
+import Note from "../Utility/Note";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -19,6 +19,9 @@ export default function MyNotes() {
   };
   const notesURL = "Notes/GetAllNotes";
   const noteURL = "/my-notes/note";
+  const deleteURL = "Notes/DeleteNote";
+  const homeUrl = "/my-notes";
+  const addNote = "/my-notes/add";
 
   return (
     <div className="w-full">
@@ -32,7 +35,12 @@ export default function MyNotes() {
             element={<Notes notesURL={notesURL} noteURL={noteURL} />}
           />
           <Route path="/add" element={<Add />} />
-          <Route path="/note" element={<Note />} />
+          <Route
+            path="/note"
+            element={
+              <Note deleteURL={deleteURL} homeURL={homeUrl} addNote={addNote} />
+            }
+          />
         </Routes>
       </div>
     </div>

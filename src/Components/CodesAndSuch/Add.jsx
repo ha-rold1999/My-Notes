@@ -35,8 +35,8 @@ export default function Add() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      step: data ? data.codes : [],
-      title: data ? data.name : "",
+      items: data ? data.items : [],
+      title: data ? data.title : "",
       description: data ? data.description : "",
       thumbnail: data ? data.url : "",
     },
