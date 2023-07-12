@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Add from "./Add";
+import Add from "../Utility/Add";
 import Navbar from "../Utility/Navbar";
 import coding from "./../../assets/icon/coding.png";
 import newCode from "./../../assets/icon/branch.png";
@@ -21,6 +21,7 @@ export default function CodesAndSuch() {
   const deleteURL = "Codes/DeleteCode";
   const homeUrl = "/codes-and-such";
   const addNote = "/codes-and-such/add";
+  const addAPI = "Codes/AddCode";
 
   return (
     <div className="w-full">
@@ -39,7 +40,10 @@ export default function CodesAndSuch() {
               <Note deleteURL={deleteURL} homeURL={homeUrl} addNote={addNote} />
             }
           />
-          <Route path="/add" element={<Add />} />
+          <Route
+            path="/add"
+            element={<Add addAPI={addAPI} homeURL={homeUrl} />}
+          />
         </Routes>
       </div>
     </div>

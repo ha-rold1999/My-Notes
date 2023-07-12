@@ -46,39 +46,15 @@ export function PutCode(data, input){
   return res;
 }
 
-export function Post(input) {
+export function Post(url, input) {
   let result = 200;
-  fetch("http://localhost:5019/api/Notes/AddNote", {
+  fetch(`http://localhost:5019/api/${url}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       Title: input.title,
       Description: input.description,
-      steps: input.step,
-      url: input.thumbnail,
-    }),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("POST: " + JSON.stringify(res, null, 2));
-    })
-    .catch((res) => {
-      console.log(JSON.stringify(res, null, 2));
-      res = 400;
-    });
-
-  return result;
-}
-
-export function PostCode(input){
-  let result = 200;
-  fetch("http://localhost:5019/api/Codes/AddCode", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      Name: input.title,
-      Description: input.description,
-      codes: input.step,
+      items: input.items,
       url: input.thumbnail,
     }),
   })

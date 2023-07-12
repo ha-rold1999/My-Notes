@@ -13,16 +13,16 @@ import { useNavigate } from "react-router-dom";
 import { newDataTrigger } from "../../Redux/updateSlice";
 import Swal from "sweetalert2";
 
-import { PutCode, PostCode } from "./../MyNotes/call";
+import { Put, Post } from "./call";
 
-export default function Add() {
+export default function Add({ addAPI, homeURL }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
 
   const schema = yup.object().shape({
-    title: yup.string().required("Name is required"),
+    title: yup.string().required("Title is required"),
     description: yup.string().required("Description is required"),
     thumbnail: yup.string().required("Thumbail is required"),
   });
@@ -46,22 +46,22 @@ export default function Add() {
   const onSubmit = (input) => {
     Swal.fire({ title: "Sending data", showConfirmButton: false });
     if (data) {
-      const res = PutCode(data, input);
+      const res = Put(data, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
-        navigate("/codes-and-such");
+        navigate(homeURL);
         Swal.fire("Note update success", "", "success");
       } else {
         Swal.fire("Updating note failed", "", "error");
       }
     } else {
-      const res = PostCode(input);
+      const res = Post(addAPI, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
-        navigate("/codes-and-such");
-        Swal.fire("New code added", "", "success");
+        navigate(homeURL);
+        Swal.fire("New note added", "", "success");
       } else {
-        Swal.fire("Adding new code failed", "", "error");
+        Swal.fire("Adding new note failed", "", "error");
       }
     }
   };
@@ -70,7 +70,7 @@ export default function Add() {
     <div className="w-1/2  flex justify-center flex-col">
       <div className="flex justify-center">
         <h1 className="text-3xl font-bold text-white">
-          {data ? "Update Code" : "Add New Code"}
+          {data ? "Update Note" : "Add New Note"}
         </h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -80,6 +80,7 @@ export default function Add() {
         {/* Description */}
         <Description register={register} errors={errors} />
 
+        <h1 className="text-xl font-semibold text-white">Steps</h1>
         {/* Steps */}
         {fields.map((field, index) => {
           return (

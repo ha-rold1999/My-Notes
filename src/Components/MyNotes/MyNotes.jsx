@@ -1,6 +1,6 @@
 import React from "react";
 import Notes from "../Utility/Notes";
-import Add from "./Add";
+import Add from "../Utility/Add";
 import Navbar from "../Utility/Navbar";
 import logo from "./../../assets/icon/note.png";
 import addIcon from "./../../assets/icon/add.png";
@@ -22,6 +22,7 @@ export default function MyNotes() {
   const deleteURL = "Notes/DeleteNote";
   const homeUrl = "/my-notes";
   const addNote = "/my-notes/add";
+  const addAPI = "Notes/AddNote";
 
   return (
     <div className="w-full">
@@ -34,7 +35,10 @@ export default function MyNotes() {
             path="/"
             element={<Notes notesURL={notesURL} noteURL={noteURL} />}
           />
-          <Route path="/add" element={<Add />} />
+          <Route
+            path="/add"
+            element={<Add addAPI={addAPI} homeURL={homeUrl} />}
+          />
           <Route
             path="/note"
             element={
