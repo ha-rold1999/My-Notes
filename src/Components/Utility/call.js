@@ -1,37 +1,13 @@
-export function Put(data, input) {
+export function Put(url, data, input) {
   let res = 200;
-  fetch("http://localhost:5019/api/Notes/UpdateNote", {
+  fetch(`http://localhost:5019/api/${url}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       Id: data.id,
       Title: input.title,
       Description: input.description,
-      steps: input.step,
-      url: input.thumbnail,
-    }),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("PUT: " + JSON.stringify(res, null, 2));
-    })
-    .catch((res) => {
-      console.log(JSON.stringify(res, null, 2));
-      res = 400;
-    });
-  return res;
-}
-
-export function PutCode(data, input){
-  let res = 200;
-  fetch("http://localhost:5019/api/Codes/UpdateCode", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      Id: data.id,
-      Name: input.title,
-      Description: input.description,
-      codes: input.step,
+      items: input.items,
       url: input.thumbnail,
     }),
   })

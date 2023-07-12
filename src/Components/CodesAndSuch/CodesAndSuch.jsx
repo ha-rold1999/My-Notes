@@ -22,6 +22,7 @@ export default function CodesAndSuch() {
   const homeUrl = "/codes-and-such";
   const addNote = "/codes-and-such/add";
   const addAPI = "Codes/AddCode";
+  const updateAPI = "Codes/UpdateCode";
 
   return (
     <div className="w-full">
@@ -42,7 +43,9 @@ export default function CodesAndSuch() {
           />
           <Route
             path="/add"
-            element={<Add addAPI={addAPI} homeURL={homeUrl} />}
+            element={
+              <Add addAPI={addAPI} updateAPI={updateAPI} homeURL={homeUrl} />
+            }
           />
         </Routes>
       </div>

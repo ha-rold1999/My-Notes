@@ -23,6 +23,7 @@ export default function MyNotes() {
   const homeUrl = "/my-notes";
   const addNote = "/my-notes/add";
   const addAPI = "Notes/AddNote";
+  const updateAPI = "Notes/UpdateNote";
 
   return (
     <div className="w-full">
@@ -37,7 +38,9 @@ export default function MyNotes() {
           />
           <Route
             path="/add"
-            element={<Add addAPI={addAPI} homeURL={homeUrl} />}
+            element={
+              <Add addAPI={addAPI} updateAPI={updateAPI} homeURL={homeUrl} />
+            }
           />
           <Route
             path="/note"

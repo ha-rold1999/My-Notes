@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 
 import { Put, Post } from "./call";
 
-export default function Add({ addAPI, homeURL }) {
+export default function Add({ addAPI, updateAPI, homeURL }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,12 +41,12 @@ export default function Add({ addAPI, homeURL }) {
       thumbnail: data ? data.url : "",
     },
   });
-  const { fields, append, remove } = useFieldArray({ name: "step", control });
+  const { fields, append, remove } = useFieldArray({ name: "items", control });
 
   const onSubmit = (input) => {
     Swal.fire({ title: "Sending data", showConfirmButton: false });
     if (data) {
-      const res = Put(data, input);
+      const res = Put(updateAPI, data, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
         navigate(homeURL);
