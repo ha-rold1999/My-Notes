@@ -7,7 +7,7 @@ export function Put(data, input) {
       Id: data.id,
       Title: input.title,
       Description: input.description,
-      steps: input.step,
+      items: input.items,
       url: input.thumbnail,
     }),
   })
@@ -29,9 +29,9 @@ export function PutCode(data, input){
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       Id: data.id,
-      Name: input.title,
+      Title: input.title,
       Description: input.description,
-      codes: input.step,
+      items: input.items,
       url: input.thumbnail,
     }),
   })
@@ -54,7 +54,7 @@ export function Post(input) {
     body: JSON.stringify({
       Title: input.title,
       Description: input.description,
-      steps: input.step,
+      items: input.items,
       url: input.thumbnail,
     }),
   })
@@ -76,9 +76,9 @@ export function PostCode(input){
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      Name: input.title,
+      Title: input.title,
       Description: input.description,
-      codes: input.step,
+      items: input.items,
       url: input.thumbnail,
     }),
   })
