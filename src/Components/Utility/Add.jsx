@@ -10,12 +10,12 @@ import Submit from "./Submit";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { newDataTrigger } from "../Redux/updateSlice";
+import { newDataTrigger } from "../../Redux/updateSlice";
 import Swal from "sweetalert2";
 
 import { Put, Post } from "./call";
 
-export default function Add() {
+export default function Add({ addAPI, updateAPI, homeURL }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,30 +35,30 @@ export default function Add() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      step: data ? data.steps : [],
+      items: data ? data.items : [],
       title: data ? data.title : "",
       description: data ? data.description : "",
       thumbnail: data ? data.url : "",
     },
   });
-  const { fields, append, remove } = useFieldArray({ name: "step", control });
+  const { fields, append, remove } = useFieldArray({ name: "items", control });
 
   const onSubmit = (input) => {
     Swal.fire({ title: "Sending data", showConfirmButton: false });
     if (data) {
-      const res = Put(data, input);
+      const res = Put(updateAPI, data, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
-        navigate("/");
+        navigate(homeURL);
         Swal.fire("Note update success", "", "success");
       } else {
         Swal.fire("Updating note failed", "", "error");
       }
     } else {
-      const res = Post(input);
+      const res = Post(addAPI, input);
       if (res === 200) {
         dispatch(newDataTrigger(true));
-        navigate("/");
+        navigate(homeURL);
         Swal.fire("New note added", "", "success");
       } else {
         Swal.fire("Adding new note failed", "", "error");
