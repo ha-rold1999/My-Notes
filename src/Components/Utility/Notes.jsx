@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
 import { API_URL } from "../../../environment";
+import { Get } from "./call";
 
 export default function Notes({ notesURL, noteURL }) {
   const dispatch = useDispatch();
@@ -12,18 +13,8 @@ export default function Notes({ notesURL, noteURL }) {
   const { newData } = useSelector((state) => state.updateSlice);
 
   useEffect(() => {
-    fetch(`${API_URL}/api/${notesURL}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setNotes(res);
-        console.log(JSON.stringify(res, null, 2));
-        dispatch(newDataTrigger(false));
-      });
+    Get(notesURL, setNotes);
+    dispatch(newDataTrigger(false));
   }, [newData, dispatch]);
 
   const filteredData =

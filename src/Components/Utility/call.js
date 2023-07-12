@@ -1,3 +1,18 @@
+import { API_URL } from "../../../environment";
+
+export function Get(notesURL, setNotes){
+  fetch(`${API_URL}/api/${notesURL}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      setNotes(res);
+    });
+}
+
 export function Put(url, data, input) {
   let res = 200;
   fetch(`http://localhost:5019/api/${url}`, {
@@ -11,10 +26,6 @@ export function Put(url, data, input) {
       url: input.thumbnail,
     }),
   })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("PUT: " + JSON.stringify(res, null, 2));
-    })
     .catch((res) => {
       console.log(JSON.stringify(res, null, 2));
       res = 400;
@@ -34,10 +45,6 @@ export function Post(url, input) {
       url: input.thumbnail,
     }),
   })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log("POST: " + JSON.stringify(res, null, 2));
-    })
     .catch((res) => {
       console.log(JSON.stringify(res, null, 2));
       res = 400;
@@ -53,7 +60,8 @@ export function Delete(url, id) {
     headers: {
       "Content-Type": "application/json",
     },
-  }).catch((res) => {
+  })
+    .catch((res) => {
     console.log(JSON.stringify(res, null, 2));
     result = 400;
   });
