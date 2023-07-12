@@ -1,4 +1,4 @@
-import save from "./../assets/icon/save.png";
+import save from "./../../assets/icon/save.png";
 
 export default function Submit() {
   return (
