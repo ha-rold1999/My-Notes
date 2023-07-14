@@ -30,8 +30,8 @@ export async function Put(url, data, input) {
     if (!response.ok) {
       throw new Error("Request failed with status " + response.status);
     }
-    const data = await response.json();
-    return data;
+    const res = await response.json();
+    return res;
   } catch (error) {
     console.log(error);
     return null;
@@ -56,6 +56,7 @@ export async function Post(url, input) {
     }
 
     const data = await response.json();
+    console.log("Data: " + JSON.stringify(data, null, 2));
     return data;
   } catch (error) {
     console.log(error);
