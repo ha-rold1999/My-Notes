@@ -43,11 +43,11 @@ export default function Add({ addAPI, updateAPI, homeURL }) {
   });
   const { fields, append, remove } = useFieldArray({ name: "items", control });
 
-  const onSubmit = (input) => {
+  const onSubmit = async (input) => {
     Swal.fire({ title: "Sending data", showConfirmButton: false });
     if (data) {
-      const res = Put(updateAPI, data, input);
-      if (res === 200) {
+      const res = await Put(updateAPI, data, input);
+      if (res && res.code === 200) {
         dispatch(newDataTrigger(true));
         navigate(homeURL);
         Swal.fire("Note update success", "", "success");
@@ -55,8 +55,8 @@ export default function Add({ addAPI, updateAPI, homeURL }) {
         Swal.fire("Updating note failed", "", "error");
       }
     } else {
-      const res = Post(addAPI, input);
-      if (res === 200) {
+      const res = await Post(addAPI, input);
+      if (res && res.code === 200) {
         dispatch(newDataTrigger(true));
         navigate(homeURL);
         Swal.fire("New note added", "", "success");
