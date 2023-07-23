@@ -35,7 +35,7 @@ export default function Navbar({ header }) {
       <div className=" basis-1/4 flex justify-center items-center space-x-5">
         <Link to="/">
           <div className="  flex justify-center items-center flex-row ">
-            <div className="text-white">Home</div>
+            <div className="text-white">Notebook</div>
             <img src={notebook} className="w-10 h-10 p-1" />
           </div>
         </Link>

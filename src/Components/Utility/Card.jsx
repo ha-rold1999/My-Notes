@@ -6,7 +6,7 @@ export default function Card({ arr, noteURL }) {
     <Link
       to={`${noteURL}`}
       state={arr}
-      className=" bg-white h-60 w-80 m-2 rounded-xl">
+      className=" bg-white h-60 w-70 m-2 rounded-xl ">
       <div className=" h-3/4 rounded-t-xl flex justify-center">
         <img src={arr.url} className="rounded-t-xl h-full " />
       </div>
