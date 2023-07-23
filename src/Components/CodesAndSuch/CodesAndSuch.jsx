@@ -16,13 +16,13 @@ export default function CodesAndSuch() {
     addLogo: newCode,
   };
 
-  const notesURL = "Codes/GetAllCodes";
+  const notesURL = "Codes/GetAllNotes";
   const noteURL = "/codes-and-such/code";
-  const deleteURL = "Codes/DeleteCode";
+  const deleteURL = "Codes/DeleteNote";
   const homeUrl = "/codes-and-such";
   const addNote = "/codes-and-such/add";
-  const addAPI = "Codes/AddCode";
-  const updateAPI = "Codes/UpdateCode";
+  const addAPI = "Codes/AddNote";
+  const updateAPI = "Codes/UpdateNote";
 
   return (
     <div className="w-full">
