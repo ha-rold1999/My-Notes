@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import handleTab from "./indexing";
 
 // eslint-disable-next-line react/prop-types
 export default function Step({ index, register, errors }) {
@@ -17,6 +18,7 @@ export default function Step({ index, register, errors }) {
         style={{ backgroundColor: "#706C61" }}
         rows={2}
         {...register(`items.${index}`)}
+        onKeyDown={handleTab}
         placeholder="Your Step"
       />
       <span className="text-red-600">{errors.items?.message}</span>
