@@ -5,6 +5,7 @@ import { newDataTrigger } from "../../Redux/updateSlice";
 import { useDispatch } from "react-redux";
 import { API_URL } from "../../../environment";
 import { Get } from "./call";
+import Swal from "sweetalert2";
 
 export default function Notes({ notesURL, noteURL }) {
   const dispatch = useDispatch();
@@ -13,8 +14,24 @@ export default function Notes({ notesURL, noteURL }) {
   const { newData } = useSelector((state) => state.updateSlice);
 
   useEffect(() => {
-    Get(notesURL, setNotes);
-    dispatch(newDataTrigger(false));
+    async function fetchData() {
+      try {
+        const notes = await Get(notesURL);
+        setNotes(notes);
+        dispatch(newDataTrigger(false));
+        Swal.close();
+      } catch (error) {
+        Swal.close();
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    }
+
+    Swal.showLoading();
+    fetchData();
   }, [newData, dispatch]);
 
   const filteredData =
