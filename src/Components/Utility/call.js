@@ -1,16 +1,12 @@
 import { API_URL } from "../../../environment";
 
-export function Get(notesURL, setNotes) {
-  fetch(`${API_URL}/api/${notesURL}`, {
+export function Get(notesURL) {
+  return fetch(`${API_URL}/api/${notesURL}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      setNotes(res);
-    });
+  }).then((res) => res.json());
 }
 
 export async function Put(url, data, input) {
