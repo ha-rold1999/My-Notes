@@ -11,7 +11,7 @@ export function Get(notesURL) {
 
 export async function Put(url, data, input) {
   try {
-    let response = await fetch(`http://localhost:5019/api/${url}`, {
+    let response = await fetch(`http://localhost:9000/api/${url}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -36,7 +36,7 @@ export async function Put(url, data, input) {
 
 export async function Post(url, input) {
   try {
-    const response = await fetch(`http://localhost:5019/api/${url}`, {
+    const response = await fetch(`http://localhost:9000/api/${url}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -62,7 +62,7 @@ export async function Post(url, input) {
 
 export async function Delete(url, id) {
   try {
-    let result = await fetch(`http://localhost:5019/api/${url}/${id}`, {
+    let result = await fetch(`http://localhost:9000/api/${url}/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

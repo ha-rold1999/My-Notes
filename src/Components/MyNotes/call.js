@@ -1,6 +1,6 @@
 export function Put(data, input) {
   let res = 200;
-  fetch("http://localhost:5019/api/Notes/UpdateNote", {
+  fetch("http://localhost:9000/api/Notes/UpdateNote", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -22,9 +22,9 @@ export function Put(data, input) {
   return res;
 }
 
-export function PutCode(data, input){
+export function PutCode(data, input) {
   let res = 200;
-  fetch("http://localhost:5019/api/Codes/UpdateCode", {
+  fetch("http://localhost:9000/api/Codes/UpdateCode", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -48,7 +48,7 @@ export function PutCode(data, input){
 
 export function Post(input) {
   let result = 200;
-  fetch("http://localhost:5019/api/Notes/AddNote", {
+  fetch("http://localhost:9000/api/Notes/AddNote", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -70,9 +70,9 @@ export function Post(input) {
   return result;
 }
 
-export function PostCode(input){
+export function PostCode(input) {
   let result = 200;
-  fetch("http://localhost:5019/api/Codes/AddCode", {
+  fetch("http://localhost:9000/api/Codes/AddCode", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -96,7 +96,7 @@ export function PostCode(input){
 
 export function Delete(id) {
   let result = 200;
-  fetch(`http://localhost:5019/api/Notes/DeleteNote/${id}`, {
+  fetch(`http://localhost:9000/api/Notes/DeleteNote/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export function Delete(id) {
 
 export function DeleteCode(id) {
   let result = 200;
-  fetch(`http://localhost:5019/api/Codes/DeleteCode/${id}`, {
+  fetch(`http://localhost:9000/api/Codes/DeleteCode/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
